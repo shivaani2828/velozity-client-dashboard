@@ -31,7 +31,7 @@ The seed creates 1 admin, 2 PMs, 4 developers, 3 projects, 15 mixed-status tasks
 
 Deploy `apps/web` to Vercel with `VITE_API_URL` pointing at the API. Deploy `apps/api` to a persistent Node service such as Render, Railway, or Fly.io with managed Postgres, `CLIENT_ORIGIN`, and secure environment secrets. Vercel serverless functions cannot sustain Socket.io connections, so its configuration is intended for REST-only experimentation; the real-time API needs a persistent host.
 
-## Explanation (188 words)
+## Explanation 
 
 The hardest problem was delivering a real-time feed without making the browser responsible for access control. Broadcasting all status changes and hiding rows in React would leak project details, especially to developers. This implementation authenticates the Socket.io connection using the same access token as the API, then derives authorized rooms from database relationships. Project managers join rooms only for projects they own, developers join only rooms where they have an assigned task, and admins additionally join the global activity room. The HTTP layer repeats the same ownership checks before it permits a task mutation, so a modified client request cannot grant a developer or PM more access.
 
