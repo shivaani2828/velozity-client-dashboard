@@ -1,0 +1,7 @@
+{
+  "name": "velozity-client-dashboard",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": { "dev": "concurrently \"npm run dev -w api\" \"npm run dev -w web\"", "build": "npm run build -w api && npm run build -w web", "seed": "npm run seed -w api" },
+  "devDependencies": { "concurrently": "^9.1.2" }
+}
